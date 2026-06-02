@@ -1,40 +1,56 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Talha Ateş — Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     /* ═══════════════════════════════════
-       TOKENS & RESET
+       TOKENS & RESET (Dark & Light)
     ═══════════════════════════════════ */
     :root {
-      --glass-bg:       rgba(255,255,255,0.06);
-      --glass-bg-hover: rgba(255,255,255,0.10);
-      --glass-border:   rgba(255,255,255,0.12);
-      --glass-border-hover: rgba(255,255,255,0.22);
-      --glass-shadow:   0 8px 32px rgba(0,0,0,0.36);
-      --glass-glow:     rgba(120,180,255,0.12);
-
+      /* Karanlık Tema (Varsayılan) */
       --bg:    #08080F;
-      --bg2:   #0C0C16;
+      --bg-glass-nav: rgba(8,8,15,0.55);
+      --bg-glass-nav-scroll: rgba(8,8,15,0.85);
+      
+      --glass-bg:       rgba(255,255,255,0.04);
+      --glass-bg-hover: rgba(255,255,255,0.08);
+      --glass-border:   rgba(255,255,255,0.1);
+      --glass-border-hover: rgba(255,255,255,0.2);
+      --glass-shadow:   0 8px 32px rgba(0,0,0,0.4);
+      
+      --text-1: #ffffff;
+      --text-2: rgba(255,255,255,0.65);
+      --text-3: rgba(255,255,255,0.4);
 
       --accent:   #5B8AF5;
       --accent2:  #A78BFA;
       --accent3:  #34D399;
-      --accent-glow: rgba(91,138,245,0.25);
 
-      --text-1: rgba(255,255,255,0.95);
-      --text-2: rgba(255,255,255,0.55);
-      --text-3: rgba(255,255,255,0.28);
-
-      --font-display: 'Syne', sans-serif;
-      --font-body:    'DM Sans', sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --font-body:    'Inter', sans-serif;
       --ease:   cubic-bezier(0.23, 1, 0.32, 1);
-      --ease2:  cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] {
+      /* Aydınlık Tema */
+      --bg:    #F8FAFC;
+      --bg-glass-nav: rgba(248,250,252,0.6);
+      --bg-glass-nav-scroll: rgba(255,255,255,0.9);
+      
+      --glass-bg:       rgba(255,255,255,0.6);
+      --glass-bg-hover: rgba(255,255,255,0.9);
+      --glass-border:   rgba(15,23,42,0.08);
+      --glass-border-hover: rgba(15,23,42,0.15);
+      --glass-shadow:   0 8px 32px rgba(15,23,42,0.06);
+      
+      --text-1: #0F172A;
+      --text-2: #475569;
+      --text-3: #94A3B8;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,6 +60,7 @@
       color: var(--text-1);
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
     body { overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
@@ -57,25 +74,34 @@
       overflow: hidden;
     }
     .orb {
-      position: absolute; border-radius: 50%; filter: blur(90px);
+      position: absolute; border-radius: 50%; filter: blur(100px);
       animation: drift 18s ease-in-out infinite alternate;
+      opacity: 0.8;
     }
+    [data-theme="light"] .orb { filter: blur(120px); opacity: 0.6; }
+
     .orb-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(91,138,245,0.18) 0%, transparent 70%);
-      top: -150px; left: -100px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(91,138,245,0.22) 0%, rgba(91,138,245,0.06) 50%, transparent 70%);
+      top: -200px; left: -120px;
     }
     .orb-2 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(167,139,250,0.14) 0%, transparent 70%);
-      bottom: 10%; right: -80px;
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(167,139,250,0.18) 0%, rgba(167,139,250,0.05) 50%, transparent 70%);
+      bottom: 5%; right: -100px;
       animation-delay: -6s; animation-duration: 22s;
     }
     .orb-3 {
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, rgba(52,211,153,0.10) 0%, transparent 70%);
-      top: 45%; left: 50%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(52,211,153,0.14) 0%, transparent 70%);
+      top: 40%; left: 48%;
       animation-delay: -11s; animation-duration: 26s;
+    }
+    .orb-4 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(251,146,60,0.09) 0%, transparent 70%);
+      top: 70%; left: 15%;
+      animation-delay: -4s; animation-duration: 20s;
     }
     @keyframes drift {
       0%   { transform: translate(0,0) scale(1); }
@@ -83,7 +109,6 @@
       100% { transform: translate(-20px,50px) scale(0.97); }
     }
 
-    /* Subtle noise grain */
     .scene::after {
       content: '';
       position: absolute; inset: 0;
@@ -92,22 +117,75 @@
     }
 
     /* ═══════════════════════════════════
-       GLASS MIXIN (reusable)
+       LIQUID GLASS MIXIN
     ═══════════════════════════════════ */
     .glass {
       background: var(--glass-bg);
-      backdrop-filter: blur(20px) saturate(160%);
-      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      backdrop-filter: blur(32px) saturate(220%) brightness(1.04);
+      -webkit-backdrop-filter: blur(32px) saturate(220%) brightness(1.04);
       border: 1px solid var(--glass-border);
-      box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.08);
+      box-shadow:
+        var(--glass-shadow),
+        inset 0 1.5px 0 rgba(255,255,255,0.18),
+        inset 0 -1px 0 rgba(255,255,255,0.04),
+        inset 1px 0 0 rgba(255,255,255,0.06),
+        0 0 0 0.5px rgba(255,255,255,0.05);
+      border-radius: 20px;
+      position: relative;
+    }
+    /* Chromatic top-edge specular */
+    .glass::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        160deg,
+        rgba(255,255,255,0.10) 0%,
+        rgba(255,255,255,0.04) 30%,
+        transparent 60%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Subtle rainbow chromatic rim on hover */
+    .glass::after {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        135deg,
+        rgba(91,138,245,0.06) 0%,
+        rgba(167,139,250,0.04) 50%,
+        rgba(52,211,153,0.03) 100%
+      );
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
     }
     .glass-hover {
-      transition: background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease);
+      transition: background 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease), transform 0.35s var(--ease);
     }
     .glass-hover:hover {
       background: var(--glass-bg-hover);
       border-color: var(--glass-border-hover);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.48), inset 0 1px 0 rgba(255,255,255,0.14);
+      box-shadow:
+        0 20px 56px rgba(0,0,0,0.22),
+        inset 0 1.5px 0 rgba(255,255,255,0.24),
+        inset 0 -1px 0 rgba(255,255,255,0.06),
+        inset 1px 0 0 rgba(255,255,255,0.10),
+        0 0 0 0.5px rgba(255,255,255,0.08),
+        0 0 24px rgba(91,138,245,0.08);
+      transform: translateY(-5px);
+    }
+    .glass-hover:hover::after { opacity: 1; }
+
+    /* Glass child content sits above pseudo-elements */
+    .glass > * { position: relative; z-index: 2; }
+
+    @keyframes shimmer {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     /* ═══════════════════════════════════
@@ -116,82 +194,74 @@
     .navbar {
       position: fixed; top: 0; left: 0; right: 0;
       z-index: 999;
-      padding: 1rem 2rem;
+      padding: 1.5rem 2rem;
     }
     .nav-inner {
       max-width: 1100px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
-      padding: .75rem 1.5rem;
-      border-radius: 16px;
-      background: rgba(8,8,15,0.55);
-      backdrop-filter: blur(24px) saturate(160%);
-      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      padding: 0.85rem 1.5rem;
+      border-radius: 100px;
+      background: var(--bg-glass-nav);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
       border: 1px solid var(--glass-border);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06);
-      transition: background .4s ease;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1);
+      transition: background 0.4s ease;
     }
-    .navbar.scrolled .nav-inner { background: rgba(8,8,15,0.85); }
+    .navbar.scrolled .nav-inner { background: var(--bg-glass-nav-scroll); }
 
     .nav-logo {
       font-family: var(--font-display);
-      font-weight: 800; font-size: 1.1rem;
-      letter-spacing: -.03em;
-      background: linear-gradient(135deg, #fff 30%, rgba(91,138,245,0.9));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      font-weight: 800; font-size: 1.3rem;
+      letter-spacing: -.02em;
     }
     .nav-links { display: flex; gap: 2rem; }
     .nav-link {
-      font-size: .82rem; font-weight: 500;
-      color: var(--text-2); letter-spacing: .01em;
-      transition: color .25s ease;
+      font-size: 0.9rem; font-weight: 500;
+      color: var(--text-2);
+      transition: color 0.25s ease;
       position: relative;
     }
     .nav-link:hover, .nav-link.active { color: var(--text-1); }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: -3px; left: 0;
-      width: 0; height: 1px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transition: width .35s var(--ease);
-    }
-    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-    .nav-right { display: flex; align-items: center; gap: .75rem; }
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; }
 
-    .lang-toggle {
-      font-family: var(--font-body);
-      font-size: .7rem; font-weight: 700; letter-spacing: .14em;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      color: var(--text-2);
-      padding: .3rem .7rem; border-radius: 8px;
-      cursor: pointer;
-      transition: border-color .25s ease, color .25s ease;
+    .icon-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      font-family: var(--font-body); font-size: 0.75rem; font-weight: 700;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      color: var(--text-2); border-radius: 50%;
+      cursor: pointer; transition: all 0.25s ease;
     }
-    .lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+    
+    [data-theme="light"] .sun-icon { display: none; }
+    [data-theme="dark"] .moon-icon { display: none; }
 
     .nav-burger {
       display: none; flex-direction: column;
       gap: 4px; background: none; border: none;
-      cursor: pointer; padding: .4rem;
+      cursor: pointer; padding: 0.4rem;
     }
     .nav-burger span {
       display: block; width: 20px; height: 1.5px;
       background: var(--text-2); border-radius: 2px;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
     }
 
     .nav-mobile {
       display: none; flex-direction: column; gap: 1.2rem;
       padding: 1.2rem 1.5rem 1.5rem;
-      margin-top: .5rem;
-      border-radius: 12px;
-      background: rgba(8,8,15,0.92);
+      margin-top: 0.5rem;
+      border-radius: 20px;
+      background: var(--bg-glass-nav-scroll);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid var(--glass-border);
     }
     .nav-mobile.open { display: flex; }
-    .nav-mobile-link { font-size: .95rem; font-weight: 500; color: var(--text-2); transition: color .2s; }
+    .nav-mobile-link { font-size: 0.95rem; font-weight: 500; color: var(--text-2); transition: color 0.2s; }
     .nav-mobile-link:hover { color: var(--text-1); }
 
     /* ═══════════════════════════════════
@@ -207,20 +277,16 @@
     .hero-inner { max-width: 920px; margin: 0 auto; }
 
     .hero-badge {
-      display: inline-flex; align-items: center; gap: .6rem;
-      padding: .35rem 1rem .35rem .5rem;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.4rem 1.2rem 0.4rem 0.6rem;
       border-radius: 100px;
-      background: rgba(91,138,245,0.10);
+      background: rgba(91,138,245,0.1);
       border: 1px solid rgba(91,138,245,0.25);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       margin-bottom: 2.5rem;
-      font-size: .75rem; font-weight: 500;
-      color: rgba(91,138,245,0.9);
-      letter-spacing: .04em;
+      font-size: 0.8rem; font-weight: 500; color: var(--accent);
     }
     .badge-dot {
-      width: 6px; height: 6px; border-radius: 50%;
+      width: 8px; height: 8px; border-radius: 50%;
       background: var(--accent3); position: relative;
     }
     .badge-dot::after {
@@ -229,363 +295,202 @@
       animation: pulse 2s ease-out infinite;
     }
     @keyframes pulse {
-      0%   { transform: scale(1); opacity: .8; }
+      0%   { transform: scale(1); opacity: 0.8; }
       100% { transform: scale(3.5); opacity: 0; }
     }
 
     .hero-name {
       font-family: var(--font-display);
-      font-size: clamp(4rem, 11vw, 8rem);
-      font-weight: 800;
-      letter-spacing: -.05em;
-      line-height: .92;
-      margin-bottom: 2rem;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 800; letter-spacing: -.04em;
+      line-height: 1; margin-bottom: 1.5rem;
     }
-    .name-line-1 {
-      display: block;
-      background: linear-gradient(135deg, #fff 40%, rgba(255,255,255,0.5));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
+    .name-line-1 { display: block; color: var(--text-1); }
     .name-line-2 {
       display: block;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 60%, #fff 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
 
     .hero-desc {
       font-size: clamp(1rem, 2vw, 1.25rem);
-      font-weight: 300; color: var(--text-2);
-      line-height: 1.75; max-width: 600px;
+      font-weight: 400; color: var(--text-2);
+      line-height: 1.6; max-width: 600px;
       margin-bottom: 3rem;
     }
-    .hero-desc strong { color: var(--text-1); font-weight: 500; }
+    .hero-desc strong { color: var(--text-1); font-weight: 600; }
 
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem; }
 
-    /* Liquid glass button */
     .btn {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .85rem 2rem; border-radius: 14px;
-      font-family: var(--font-body);
-      font-size: .88rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem; border-radius: 100px;
+      font-family: var(--font-body); font-size: 0.95rem; font-weight: 500;
       cursor: pointer; border: none;
-      transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
     }
     .btn:active { transform: scale(0.97) !important; }
 
     .btn-primary {
-      background: linear-gradient(135deg, rgba(91,138,245,0.9), rgba(167,139,250,0.85));
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: #fff;
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 4px 20px rgba(91,138,245,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+      box-shadow: 0 8px 24px rgba(91,138,245,0.3);
     }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(91,138,245,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
-    }
+    .btn-primary:hover { box-shadow: 0 12px 32px rgba(91,138,245,0.5); transform: translateY(-3px); }
 
     .btn-ghost {
       background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      color: var(--text-2);
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.06);
+      color: var(--text-1); border: 1px solid var(--glass-border);
     }
-    .btn-ghost:hover {
-      transform: translateY(-3px);
-      background: var(--glass-bg-hover);
-      border-color: var(--glass-border-hover);
-      color: var(--text-1);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
-    }
+    .btn-ghost:hover { background: var(--glass-bg-hover); border-color: var(--glass-border-hover); transform: translateY(-3px); }
 
-    /* Hero meta cards */
     .hero-meta {
       display: flex; gap: 1rem; flex-wrap: wrap;
-      padding-top: 2.5rem;
-      border-top: 1px solid var(--glass-border);
+      padding-top: 2.5rem; border-top: 1px solid var(--glass-border);
     }
     .meta-chip {
-      padding: .6rem 1.1rem; border-radius: 12px;
-      font-size: .75rem; font-weight: 500;
-      display: flex; flex-direction: column; gap: .2rem;
+      padding: 0.75rem 1.25rem;
+      display: flex; flex-direction: column; gap: 0.2rem;
     }
     .meta-chip .lbl {
-      font-size: .6rem; font-weight: 700;
-      letter-spacing: .15em; text-transform: uppercase;
-      color: var(--text-3);
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3);
     }
-    .meta-chip .val { color: var(--text-2); }
+    .meta-chip .val { font-size: 0.9rem; font-weight: 500; color: var(--text-1); }
     .meta-chip .val.active { color: var(--accent3); }
 
     /* ═══════════════════════════════════
-       LAYOUT
+       LAYOUT & TYPOGRAPHY
     ═══════════════════════════════════ */
     section { position: relative; z-index: 1; padding: 8rem 2rem; }
     .container { max-width: 1100px; margin: 0 auto; }
     .container-narrow { max-width: 700px; margin: 0 auto; }
 
     .section-eyebrow {
-      font-size: .7rem; font-weight: 700; letter-spacing: .22em;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent);
       margin-bottom: 1rem;
     }
     .section-heading {
       font-family: var(--font-display);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700; letter-spacing: -.04em;
-      line-height: 1.15; margin-bottom: 3.5rem;
-      color: var(--text-1);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; letter-spacing: -.03em;
+      line-height: 1.1; margin-bottom: 3.5rem;
     }
 
-    /* ═══════════════════════════════════
-       DIVIDER
-    ═══════════════════════════════════ */
     .divider {
       width: 100%; height: 1px;
       background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
-      margin: 0;
     }
 
     /* ═══════════════════════════════════
        ABOUT
     ═══════════════════════════════════ */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem; align-items: center;
-    }
-    .about-text p {
-      font-size: 1rem; font-weight: 300;
-      color: var(--text-2); line-height: 1.85;
-      margin-bottom: 1.25rem;
-    }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-text p { font-size: 1.05rem; color: var(--text-2); line-height: 1.7; margin-bottom: 1.5rem; }
     .about-text p:last-child { margin-bottom: 0; }
-    .about-text strong { color: var(--text-1); font-weight: 500; }
+    .about-text strong { color: var(--text-1); font-weight: 600; }
 
-    .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    .stat-card {
-      padding: 1.6rem 1.4rem; border-radius: 16px;
-    }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .stat-card { padding: 2rem; text-align: center; }
     .stat-card .num {
-      font-family: var(--font-display);
-      font-size: 2.2rem; font-weight: 800;
-      letter-spacing: -.04em; line-height: 1;
+      font-family: var(--font-display); font-size: 3rem; font-weight: 700;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      margin-bottom: .4rem;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem; line-height: 1;
     }
-    .stat-card .desc {
-      font-size: .78rem; color: var(--text-3);
-      font-weight: 500; letter-spacing: .02em;
-    }
+    .stat-card .desc { font-size: 0.9rem; color: var(--text-3); font-weight: 500; }
 
     /* ═══════════════════════════════════
        SKILLS
     ═══════════════════════════════════ */
-    .skill-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-    }
-    .skill-card {
-      padding: 1.8rem 1.6rem; border-radius: 18px;
-      position: relative; overflow: hidden;
-    }
-    .skill-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-    }
-    .skill-icon {
-      font-size: 1.6rem; margin-bottom: 1rem;
-      display: block;
-      filter: drop-shadow(0 0 12px rgba(91,138,245,0.3));
-    }
-    .skill-title {
-      font-family: var(--font-display);
-      font-size: 1rem; font-weight: 700;
-      color: var(--text-1); margin-bottom: .5rem; letter-spacing: -.01em;
-    }
-    .skill-desc { font-size: .82rem; color: var(--text-2); line-height: 1.7; font-weight: 300; }
+    .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .skill-card { padding: 2rem; }
+    .skill-icon { font-size: 2rem; margin-bottom: 1rem; display: block; filter: drop-shadow(0 0 12px rgba(91,138,245,0.3)); }
+    .skill-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .skill-desc { font-size: 0.95rem; color: var(--text-2); line-height: 1.6; }
 
-    /* Tools pills */
-    .tools-row {
-      display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 3rem;
-    }
+    .tools-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 3rem; }
     .tool-pill {
-      font-size: .75rem; font-weight: 500;
-      padding: .35rem .85rem; border-radius: 100px;
-      color: var(--text-2);
-      transition: border-color .25s, color .25s;
+      font-size: 0.8rem; font-weight: 500;
+      padding: 0.4rem 1rem; border-radius: 100px;
+      color: var(--text-2); border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
     }
 
     /* ═══════════════════════════════════
        PROJECTS
     ═══════════════════════════════════ */
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.25rem;
-    }
-    .project-card {
-      padding: 2.2rem 2rem; border-radius: 20px;
-      display: flex; flex-direction: column;
-      position: relative; overflow: hidden;
-    }
-    .project-card::after {
-      content: '';
-      position: absolute; inset: 0; border-radius: 20px;
-      background: linear-gradient(135deg, rgba(91,138,245,0.04), transparent);
-      opacity: 0; transition: opacity .4s ease;
-    }
-    .project-card:hover::after { opacity: 1; }
-
-    .card-top {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 1.2rem;
-    }
-    .card-num {
-      font-family: var(--font-display);
-      font-size: .7rem; font-weight: 700;
-      color: var(--text-3); letter-spacing: .12em;
-    }
-    .card-tag {
-      font-size: .68rem; font-weight: 600;
-      padding: .2rem .75rem; border-radius: 100px;
-      background: rgba(91,138,245,0.12);
-      border: 1px solid rgba(91,138,245,0.25);
-      color: var(--accent);
-    }
-    .card-title {
-      font-family: var(--font-display);
-      font-size: 1.4rem; font-weight: 700;
-      letter-spacing: -.03em; color: var(--text-1);
-      margin-bottom: .75rem; line-height: 1.2;
-    }
-    .card-desc {
-      font-size: .875rem; color: var(--text-2);
-      line-height: 1.75; flex: 1; font-weight: 300;
-      margin-bottom: 1.5rem;
-    }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+    .project-card { padding: 2.5rem; display: flex; flex-direction: column; }
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .card-num { font-weight: 600; color: var(--text-3); font-family: var(--font-display); }
+    .card-tag { font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 100px; background: rgba(91,138,245,0.1); color: var(--accent); border: 1px solid rgba(91,138,245,0.2); }
+    .card-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-1); }
+    .card-desc { font-size: 0.95rem; color: var(--text-2); line-height: 1.6; margin-bottom: 2rem; flex: 1; }
     .card-link {
-      display: inline-flex; align-items: center; gap: .4rem;
-      font-size: .78rem; font-weight: 600;
-      color: var(--accent); width: fit-content;
-      transition: gap .25s var(--ease), color .25s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-weight: 500; color: var(--accent);
+      transition: gap 0.3s var(--ease), color 0.25s ease;
     }
-    .card-link:hover { gap: .7rem; }
-    .card-link svg { transition: transform .25s var(--ease); }
-    .card-link:hover svg { transform: translateX(3px); }
+    .card-link svg { transition: transform 0.3s var(--ease); flex-shrink: 0; }
+    .card-link:hover { gap: 0.9rem; }
+    .card-link:hover svg { transform: translateX(4px); }
+    .project-card.glass-hover:hover {
+      box-shadow:
+        0 20px 56px rgba(0,0,0,0.22),
+        inset 0 1.5px 0 rgba(255,255,255,0.24),
+        0 0 32px rgba(91,138,245,0.1);
+    }
 
     /* ═══════════════════════════════════
-       PHILOSOPHY / QUOTES
+       PHILOSOPHY
     ═══════════════════════════════════ */
     .philosophy-wrap { display: flex; flex-direction: column; gap: 1px; }
     .philosophy-item {
-      padding: 3rem 0;
-      border-bottom: 1px solid var(--glass-border);
+      padding: 3rem 0; border-bottom: 1px solid var(--glass-border);
       display: flex; gap: 4rem; align-items: flex-start;
-      transition: padding-left .35s var(--ease);
+      transition: padding-left 0.35s var(--ease);
     }
     .philosophy-item:first-child { border-top: 1px solid var(--glass-border); }
     .philosophy-item:hover { padding-left: 1.5rem; }
     .philosophy-num {
-      font-family: var(--font-display);
-      font-size: .68rem; font-weight: 700;
-      color: var(--accent); letter-spacing: .12em;
-      flex-shrink: 0; margin-top: .4rem;
-      width: 2rem;
+      font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
+      color: var(--accent); width: 2rem; flex-shrink: 0;
     }
     .philosophy-quote {
-      font-family: var(--font-display);
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 700; letter-spacing: -.03em;
-      color: var(--text-1); line-height: 1.2;
-      flex: 1;
+      font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 600; color: var(--text-1); line-height: 1.2; flex: 1;
     }
     .philosophy-quote span {
-      color: var(--text-3);
-      display: block; font-size: .82rem;
-      font-family: var(--font-body);
-      font-weight: 300; letter-spacing: 0;
-      margin-top: .75rem; font-style: italic;
+      display: block; font-size: 0.9rem; font-family: var(--font-body);
+      font-weight: 400; color: var(--text-3); margin-top: 0.75rem; font-style: italic;
     }
 
     /* ═══════════════════════════════════
        CONTACT
     ═══════════════════════════════════ */
-    .contact-inner {
-      padding: 4rem; border-radius: 28px;
-      text-align: center; position: relative; overflow: hidden;
-    }
-    .contact-inner::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(91,138,245,0.12), transparent);
-      pointer-events: none;
-    }
-    .contact-heading {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 800; letter-spacing: -.04em;
-      line-height: 1.1; margin-bottom: .75rem;
-    }
-    .contact-sub {
-      font-size: 1rem; color: var(--text-2); font-weight: 300;
-      margin-bottom: 2.5rem; line-height: 1.7;
-    }
+    .contact-inner { padding: 4rem; text-align: center; }
+    .contact-heading { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; margin-bottom: 1rem; }
+    .contact-sub { font-size: 1.05rem; color: var(--text-2); margin-bottom: 2.5rem; line-height: 1.7; }
     .contact-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-    .contact-email {
-      display: block; font-size: .78rem; color: var(--text-3);
-      margin-top: 2rem; letter-spacing: .05em;
-      transition: color .25s;
-    }
+    .contact-email { display: block; font-size: 0.9rem; color: var(--text-3); margin-top: 2rem; font-weight: 500; transition: color 0.2s; }
     .contact-email:hover { color: var(--accent); }
 
     /* ═══════════════════════════════════
        FOOTER
     ═══════════════════════════════════ */
-    footer {
-      position: relative; z-index: 1;
-      border-top: 1px solid var(--glass-border);
-      padding: 2rem 2rem;
-    }
-    .footer-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-copy { font-size: .75rem; color: var(--text-3); font-weight: 300; }
+    footer { padding: 2rem; border-top: 1px solid var(--glass-border); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: 0.85rem; color: var(--text-3); }
     .footer-links { display: flex; gap: 1.5rem; }
-    .footer-link {
-      font-size: .75rem; color: var(--text-3);
-      transition: color .25s;
-    }
+    .footer-link { font-size: 0.85rem; color: var(--text-3); transition: color 0.2s; }
     .footer-link:hover { color: var(--accent); }
 
-    /* ═══════════════════════════════════
-       SCROLL REVEAL
-    ═══════════════════════════════════ */
-    .reveal {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity .8s var(--ease), transform .8s var(--ease);
-    }
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
     .reveal.in-view { opacity: 1; transform: none; }
-    .reveal:nth-child(2) { transition-delay: .08s; }
-    .reveal:nth-child(3) { transition-delay: .16s; }
-    .reveal:nth-child(4) { transition-delay: .24s; }
-    .reveal:nth-child(5) { transition-delay: .32s; }
-    .reveal:nth-child(6) { transition-delay: .40s; }
-
+    
     /* ═══════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════ */
@@ -594,95 +499,68 @@
       .nav-burger { display: flex; }
       .hero { padding: 8rem 1.5rem 5rem; }
       section { padding: 5rem 1.5rem; }
-      .about-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-stats { grid-template-columns: 1fr 1fr; }
       .skill-grid, .project-grid { grid-template-columns: 1fr; }
       .hero-actions { flex-direction: column; align-items: flex-start; }
-      .philosophy-item { flex-direction: column; gap: .75rem; padding: 2rem 0; }
+      .philosophy-item { flex-direction: column; gap: 1rem; padding: 2rem 0; }
       .philosophy-item:hover { padding-left: 0; }
       .contact-inner { padding: 2.5rem 1.5rem; }
-    }
-    @media (max-width: 480px) {
-      .navbar { padding: .75rem 1rem; }
-      .nav-inner { padding: .65rem 1.1rem; }
-      .about-stats { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
     }
 
     /* ═══════════════════════════════════
-       I18N HIDDEN
+       I18N LANGUAGE SYSTEM
     ═══════════════════════════════════ */
-    [data-lang]:not([data-lang="tr"]) { display: none; }
+    body[data-lang="en"] [data-lang="tr"] { display: none !important; }
+    body[data-lang="tr"] [data-lang="en"] { display: none !important; }
   </style>
 </head>
-<body>
+<body data-lang="en">
 
-<!-- AMBIENT SCENE -->
 <div class="scene" aria-hidden="true">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
 </div>
 
-<!-- ═══ NAVBAR ═══ -->
 <header class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">talha<span style="color:var(--accent)">.</span></a>
+    <a href="#" class="nav-logo">TA<span style="color:var(--accent)">.</span></a>
 
-    <nav class="nav-links" aria-label="Ana menü">
-      <a href="#about"      class="nav-link" data-section="about">
-        <span data-lang="tr">Hakkımda</span>
-        <span data-lang="en">About</span>
-      </a>
-      <a href="#skills"     class="nav-link" data-section="skills">
-        <span data-lang="tr">Yetenekler</span>
-        <span data-lang="en">Skills</span>
-      </a>
-      <a href="#projects"   class="nav-link" data-section="projects">
-        <span data-lang="tr">Projeler</span>
-        <span data-lang="en">Projects</span>
-      </a>
-      <a href="#philosophy" class="nav-link" data-section="philosophy">
-        <span data-lang="tr">Felsefe</span>
-        <span data-lang="en">Philosophy</span>
-      </a>
-      <a href="#contact"    class="nav-link" data-section="contact">
-        <span data-lang="tr">İletişim</span>
-        <span data-lang="en">Contact</span>
-      </a>
+    <nav class="nav-links">
+      <a href="#about" class="nav-link"><span data-lang="tr">Hakkımda</span><span data-lang="en">About</span></a>
+      <a href="#skills" class="nav-link"><span data-lang="tr">Yetenekler</span><span data-lang="en">Skills</span></a>
+      <a href="#projects" class="nav-link"><span data-lang="tr">Projeler</span><span data-lang="en">Projects</span></a>
+      <a href="#philosophy" class="nav-link"><span data-lang="tr">Felsefe</span><span data-lang="en">Philosophy</span></a>
+      <a href="#contact" class="nav-link"><span data-lang="tr">İletişim</span><span data-lang="en">Contact</span></a>
     </nav>
 
     <div class="nav-right">
-      <button class="lang-toggle" id="langToggle" aria-label="Dil değiştir">EN</button>
-      <button class="nav-burger" id="burger" aria-label="Menüyü aç" aria-expanded="false">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle Theme">
+        <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="icon-btn" id="langToggle">TR</button>
+      <button class="nav-burger" id="burger" aria-label="Menü">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 
-  <div class="nav-mobile" id="navMobile" role="navigation">
-    <a href="#about"      class="nav-mobile-link">
-      <span data-lang="tr">Hakkımda</span><span data-lang="en">About</span>
-    </a>
-    <a href="#skills"     class="nav-mobile-link">
-      <span data-lang="tr">Yetenekler</span><span data-lang="en">Skills</span>
-    </a>
-    <a href="#projects"   class="nav-mobile-link">
-      <span data-lang="tr">Projeler</span><span data-lang="en">Projects</span>
-    </a>
-    <a href="#philosophy" class="nav-mobile-link">
-      <span data-lang="tr">Felsefe</span><span data-lang="en">Philosophy</span>
-    </a>
-    <a href="#contact"    class="nav-mobile-link">
-      <span data-lang="tr">İletişim</span><span data-lang="en">Contact</span>
-    </a>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#about" class="nav-mobile-link"><span data-lang="tr">Hakkımda</span><span data-lang="en">About</span></a>
+    <a href="#skills" class="nav-mobile-link"><span data-lang="tr">Yetenekler</span><span data-lang="en">Skills</span></a>
+    <a href="#projects" class="nav-mobile-link"><span data-lang="tr">Projeler</span><span data-lang="en">Projects</span></a>
+    <a href="#philosophy" class="nav-mobile-link"><span data-lang="tr">Felsefe</span><span data-lang="en">Philosophy</span></a>
+    <a href="#contact" class="nav-mobile-link"><span data-lang="tr">İletişim</span><span data-lang="en">Contact</span></a>
   </div>
 </header>
 
-<!-- ═══ HERO ═══ -->
 <section class="hero" id="home">
   <div class="hero-inner">
-    <div class="hero-badge">
+    <div class="hero-badge glass">
       <span class="badge-dot"></span>
       <span data-lang="tr">Şu an projelere açık</span>
       <span data-lang="en">Open to new projects</span>
@@ -694,58 +572,36 @@
     </h1>
 
     <p class="hero-desc">
-      <span data-lang="tr">
-        <strong>Yazılım geliştiricisi.</strong> Python otomasyon araçları, TypeScript uygulamaları
-        ve web projeleri üretiyorum. Satır satır, <strong>anlam katarak</strong> kod yazıyorum.
-      </span>
-      <span data-lang="en">
-        <strong>Software developer.</strong> I build Python automation tools, TypeScript apps
-        and web projects — writing code <strong>line by line, with intent.</strong>
-      </span>
+      <span data-lang="tr"><strong>Yazılım geliştiricisi.</strong> Python otomasyon araçları, TypeScript uygulamaları ve web projeleri üretiyorum. Satır satır, <strong>anlam katarak</strong> kod yazıyorum.</span>
+      <span data-lang="en"><strong>Software developer.</strong> I build Python automation tools, TypeScript apps and web projects — writing code <strong>line by line, with intent.</strong></span>
     </p>
 
     <div class="hero-actions">
       <a href="#projects" class="btn btn-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        <span data-lang="tr">Projeleri Gör</span>
-        <span data-lang="en">View Projects</span>
+        <span data-lang="tr">Projeleri Gör</span><span data-lang="en">View Projects</span>
       </a>
       <a href="#contact" class="btn btn-ghost">
-        <span data-lang="tr">İletişime Geç</span>
-        <span data-lang="en">Get in Touch</span>
+        <span data-lang="tr">İletişime Geç</span><span data-lang="en">Get in Touch</span>
       </a>
     </div>
 
     <div class="hero-meta">
       <div class="meta-chip glass">
-        <span class="lbl">
-          <span data-lang="tr">Konum</span>
-          <span data-lang="en">Location</span>
-        </span>
+        <span class="lbl"><span data-lang="tr">Konum</span><span data-lang="en">Location</span></span>
         <span class="val">Türkiye</span>
       </div>
       <div class="meta-chip glass">
-        <span class="lbl">
-          <span data-lang="tr">Uzmanlık</span>
-          <span data-lang="en">Focus</span>
-        </span>
+        <span class="lbl"><span data-lang="tr">Uzmanlık</span><span data-lang="en">Focus</span></span>
         <span class="val">Python · TypeScript</span>
       </div>
       <div class="meta-chip glass">
-        <span class="lbl">
-          <span data-lang="tr">Durum</span>
-          <span data-lang="en">Status</span>
-        </span>
+        <span class="lbl"><span data-lang="tr">Durum</span><span data-lang="en">Status</span></span>
         <span class="val active" id="liveStatus">
-          <span data-lang="tr">Aktif geliştiriyorum</span>
-          <span data-lang="en">Actively building</span>
+          <span data-lang="tr">Aktif geliştiriyorum</span><span data-lang="en">Actively building</span>
         </span>
       </div>
       <div class="meta-chip glass">
-        <span class="lbl">
-          <span data-lang="tr">Katkı</span>
-          <span data-lang="en">Streak</span>
-        </span>
+        <span class="lbl"><span data-lang="tr">Katkı</span><span data-lang="en">Streak</span></span>
         <span class="val">GitHub → aktif</span>
       </div>
     </div>
@@ -754,13 +610,9 @@
 
 <div class="divider"></div>
 
-<!-- ═══ ABOUT ═══ -->
 <section id="about">
   <div class="container">
-    <p class="section-eyebrow">
-      <span data-lang="tr">Hakkımda</span>
-      <span data-lang="en">About Me</span>
-    </p>
+    <p class="section-eyebrow"><span data-lang="tr">Hakkımda</span><span data-lang="en">About Me</span></p>
     <h2 class="section-heading">
       <span data-lang="tr">Kod, benim için<br>bir ifade biçimi.</span>
       <span data-lang="en">Code is, for me,<br>a form of expression.</span>
@@ -768,54 +620,28 @@
 
     <div class="about-grid">
       <div class="about-text reveal">
-        <p data-lang="tr">
-          Merhaba, ben <strong>Talha</strong>. Yazılım geliştirmeye duyduğum tutkuyla hem otomasyon araçları
-          hem de kullanıcı deneyimine önem veren web uygulamaları üretiyorum. Teknolojiyi yalnızca
-          bir araç olarak değil, <strong>fikir gerçekleştirmenin en güçlü yolu</strong> olarak görüyorum.
-        </p>
-        <p data-lang="tr">
-          Python'dan TypeScript'e, back-end'den front-end'e uzanan geniş bir spektrumda çalışıyorum.
-          Her projeyi olası en az kodla, olası en yüksek etki için tasarlamaya çalışıyorum.
-        </p>
-        <p data-lang="en">
-          Hey, I'm <strong>Talha</strong>. Driven by a passion for software, I build automation tools
-          and web applications that care about the user experience. I see technology not just as a tool,
-          but as <strong>the most powerful way to bring ideas to life.</strong>
-        </p>
-        <p data-lang="en">
-          I work across a wide spectrum — from Python to TypeScript, back-end to front-end —
-          always trying to design each project for maximum impact with minimum unnecessary complexity.
-        </p>
+        <p data-lang="tr">Merhaba, ben <strong>Talha</strong>. Yazılım geliştirmeye duyduğum tutkuyla hem otomasyon araçları hem de kullanıcı deneyimine önem veren web uygulamaları üretiyorum. Teknolojiyi yalnızca bir araç olarak değil, <strong>fikir gerçekleştirmenin en güçlü yolu</strong> olarak görüyorum.</p>
+        <p data-lang="tr">Python'dan TypeScript'e, back-end'den front-end'e uzanan geniş bir spektrumda çalışıyorum. Her projeyi olası en az kodla, olası en yüksek etki için tasarlamaya çalışıyorum.</p>
+        <p data-lang="en">Hey, I'm <strong>Talha</strong>. Driven by a passion for software, I build automation tools and web applications that care about the user experience. I see technology not just as a tool, but as <strong>the most powerful way to bring ideas to life.</strong></p>
+        <p data-lang="en">I work across a wide spectrum — from Python to TypeScript, back-end to front-end — always trying to design each project for maximum impact with minimum unnecessary complexity.</p>
       </div>
 
       <div class="about-stats">
         <div class="stat-card glass reveal">
           <div class="num">3+</div>
-          <div class="desc">
-            <span data-lang="tr">Yıllık deneyim</span>
-            <span data-lang="en">Years experience</span>
-          </div>
+          <div class="desc"><span data-lang="tr">Yıllık deneyim</span><span data-lang="en">Years experience</span></div>
         </div>
         <div class="stat-card glass reveal">
           <div class="num">10+</div>
-          <div class="desc">
-            <span data-lang="tr">Tamamlanan proje</span>
-            <span data-lang="en">Shipped projects</span>
-          </div>
+          <div class="desc"><span data-lang="tr">Tamamlanan proje</span><span data-lang="en">Shipped projects</span></div>
         </div>
         <div class="stat-card glass reveal">
           <div class="num">∞</div>
-          <div class="desc">
-            <span data-lang="tr">Öğrenmeye açıklık</span>
-            <span data-lang="en">Curiosity to learn</span>
-          </div>
+          <div class="desc"><span data-lang="tr">Öğrenmeye açıklık</span><span data-lang="en">Curiosity to learn</span></div>
         </div>
         <div class="stat-card glass reveal">
           <div class="num">2</div>
-          <div class="desc">
-            <span data-lang="tr">Dil (TR / EN)</span>
-            <span data-lang="en">Languages (TR / EN)</span>
-          </div>
+          <div class="desc"><span data-lang="tr">Dil (TR / EN)</span><span data-lang="en">Languages (TR / EN)</span></div>
         </div>
       </div>
     </div>
@@ -824,13 +650,9 @@
 
 <div class="divider"></div>
 
-<!-- ═══ SKILLS ═══ -->
 <section id="skills">
   <div class="container">
-    <p class="section-eyebrow">
-      <span data-lang="tr">Yetenekler</span>
-      <span data-lang="en">Skills</span>
-    </p>
+    <p class="section-eyebrow"><span data-lang="tr">Yetenekler</span><span data-lang="en">Skills</span></p>
     <h2 class="section-heading">
       <span data-lang="tr">Araçlarım ve uzmanlık alanlarım</span>
       <span data-lang="en">My tools and domains</span>
@@ -845,7 +667,6 @@
           <span data-lang="en">Strong Python foundation in automation, scraping, and data processing. Building real-world solutions with Selenium, BeautifulSoup and FastAPI.</span>
         </p>
       </div>
-
       <div class="skill-card glass glass-hover reveal">
         <span class="skill-icon">⚡</span>
         <div class="skill-title">TypeScript / JavaScript</div>
@@ -854,7 +675,6 @@
           <span data-lang="en">Mobile apps with React Native, web tools with vanilla JS. Type safety and the modern JS ecosystem are non-negotiable for me.</span>
         </p>
       </div>
-
       <div class="skill-card glass glass-hover reveal">
         <span class="skill-icon">🌐</span>
         <div class="skill-title">Web Development</div>
@@ -863,37 +683,25 @@
           <span data-lang="en">Production-grade sites and tools from scratch with HTML/CSS/JS. Performance, accessibility and mobile compatibility are first-class concerns.</span>
         </p>
       </div>
-
       <div class="skill-card glass glass-hover reveal">
         <span class="skill-icon">🤖</span>
-        <div class="skill-title">
-          <span data-lang="tr">Otomasyon</span>
-          <span data-lang="en">Automation</span>
-        </div>
+        <div class="skill-title"><span data-lang="tr">Otomasyon</span><span data-lang="en">Automation</span></div>
         <p class="skill-desc">
           <span data-lang="tr">Tekrarlayan görevleri ortadan kaldıracak akıllı betikler ve araçlar tasarlıyorum. Web scraping'den süreç otomasyonuna her şeyi kapsıyorum.</span>
           <span data-lang="en">Designing smart scripts and tools that eliminate repetitive tasks — from web scraping to process automation.</span>
         </p>
       </div>
-
       <div class="skill-card glass glass-hover reveal">
         <span class="skill-icon">📱</span>
-        <div class="skill-title">
-          <span data-lang="tr">Mobil Uygulama</span>
-          <span data-lang="en">Mobile Apps</span>
-        </div>
+        <div class="skill-title"><span data-lang="tr">Mobil Uygulama</span><span data-lang="en">Mobile Apps</span></div>
         <p class="skill-desc">
           <span data-lang="tr">React Native ile hem iOS hem Android için çapraz platform uygulamalar geliştiriyorum. Doğal his, birincil hedef.</span>
           <span data-lang="en">Building cross-platform applications for both iOS and Android with React Native. Native feel is always the primary goal.</span>
         </p>
       </div>
-
       <div class="skill-card glass glass-hover reveal">
         <span class="skill-icon">🔧</span>
-        <div class="skill-title">
-          <span data-lang="tr">Araçlar & Ekosistem</span>
-          <span data-lang="en">Tools & Ecosystem</span>
-        </div>
+        <div class="skill-title"><span data-lang="tr">Araçlar & Ekosistem</span><span data-lang="en">Tools & Ecosystem</span></div>
         <p class="skill-desc">
           <span data-lang="tr">Git, VS Code, Linux ortamları. Temiz commit geçmişi, modüler mimari ve belgelenmiş kod benim yazılım kültürümün bir parçası.</span>
           <span data-lang="en">Git, VS Code, Linux environments. Clean commit history, modular architecture, and documented code are part of my software culture.</span>
@@ -902,129 +710,83 @@
     </div>
 
     <div class="tools-row">
-      <div class="tool-pill glass">Python</div>
-      <div class="tool-pill glass">TypeScript</div>
-      <div class="tool-pill glass">React Native</div>
-      <div class="tool-pill glass">FastAPI</div>
-      <div class="tool-pill glass">Selenium</div>
-      <div class="tool-pill glass">BeautifulSoup</div>
-      <div class="tool-pill glass">HTML/CSS</div>
-      <div class="tool-pill glass">JavaScript</div>
-      <div class="tool-pill glass">Git</div>
-      <div class="tool-pill glass">Linux</div>
-      <div class="tool-pill glass">VS Code</div>
+      <div class="tool-pill">Python</div>
+      <div class="tool-pill">TypeScript</div>
+      <div class="tool-pill">React Native</div>
+      <div class="tool-pill">FastAPI</div>
+      <div class="tool-pill">Selenium</div>
+      <div class="tool-pill">BeautifulSoup</div>
+      <div class="tool-pill">HTML/CSS</div>
+      <div class="tool-pill">JavaScript</div>
+      <div class="tool-pill">Git</div>
+      <div class="tool-pill">Linux</div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══ PROJECTS ═══ -->
 <section id="projects">
   <div class="container">
-    <p class="section-eyebrow">
-      <span data-lang="tr">Projeler</span>
-      <span data-lang="en">Projects</span>
-    </p>
+    <p class="section-eyebrow"><span data-lang="tr">Projeler</span><span data-lang="en">Projects</span></p>
     <h2 class="section-heading">
       <span data-lang="tr">Gerçek dünya için<br>gerçek çözümler</span>
       <span data-lang="en">Real solutions<br>for the real world</span>
     </h2>
 
     <div class="project-grid">
-
-      <!-- StickerBridge -->
       <div class="project-card glass glass-hover reveal">
-        <div class="card-top">
-          <span class="card-num">01</span>
-          <span class="card-tag">Web Tool</span>
-        </div>
+        <div class="card-top"><span class="card-num">01</span><span class="card-tag">Web Tool</span></div>
         <h3 class="card-title">StickerBridge</h3>
         <p class="card-desc">
-          <span data-lang="tr">LINE Store çıkartma paketlerini WhatsApp çıkartma paketlerine dönüştüren web aracı. Statik ve animasyonlu çıkartmaları destekler, karanlık mod ve EN/TR dil desteği içerir.</span>
-          <span data-lang="en">Web tool that converts LINE Store sticker packs into WhatsApp sticker packages. Supports static and animated stickers, with dark mode and EN/TR language support.</span>
+          <span data-lang="tr">LINE Store çıkartma paketlerini WhatsApp çıkartma paketlerine dönüştüren web aracı. Statik ve animasyonlu çıkartmaları destekler.</span>
+          <span data-lang="en">Web tool that converts LINE Store sticker packs into WhatsApp sticker packages. Supports static and animated stickers.</span>
         </p>
-        <a href="#" class="card-link">
-          <span data-lang="tr">Projeye Bak</span>
-          <span data-lang="en">View Project</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <a href="https://line-to-wa-stickers-715717888966.us-west1.run.app/" target="_blank" rel="noopener" class="card-link">
+          <span data-lang="tr">Projeye Bak</span><span data-lang="en">View Project</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
 
-      <!-- Colorbot -->
       <div class="project-card glass glass-hover reveal">
-        <div class="card-top">
-          <span class="card-num">02</span>
-          <span class="card-tag">Automation</span>
-        </div>
+        <div class="card-top"><span class="card-num">02</span><span class="card-tag">Automation</span></div>
         <h3 class="card-title">Colorbot</h3>
         <p class="card-desc">
-          <span data-lang="tr">Piksel rengi tespitine dayalı akıllı otomasyon botu. Gerçek zamanlı renk analizi ile koşullu eylemler gerçekleştirir; oyun ve masaüstü otomasyon senaryoları için ideal.</span>
-          <span data-lang="en">Smart automation bot based on pixel color detection. Performs conditional actions with real-time color analysis — ideal for gaming and desktop automation scenarios.</span>
+          <span data-lang="tr">Piksel rengi tespitine dayalı akıllı otomasyon botu. Gerçek zamanlı renk analizi ile koşullu eylemler gerçekleştirir.</span>
+          <span data-lang="en">Smart automation bot based on pixel color detection. Performs conditional actions with real-time color analysis.</span>
         </p>
-        <a href="#" class="card-link">
-          <span data-lang="tr">Projeye Bak</span>
-          <span data-lang="en">View Project</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <a href="https://github.com/2xytalha/2xyColorbot" target="_blank" rel="noopener" class="card-link">
+          <span data-lang="tr">Projeye Bak</span><span data-lang="en">View Project</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
 
-      <!-- YazBoz -->
       <div class="project-card glass glass-hover reveal">
-        <div class="card-top">
-          <span class="card-num">03</span>
-          <span class="card-tag">Mobile App</span>
-        </div>
+        <div class="card-top"><span class="card-num">03</span><span class="card-tag">Mobile App</span></div>
         <h3 class="card-title">YazBoz</h3>
         <p class="card-desc">
-          <span data-lang="tr">TypeScript ve React Native ile geliştirilen mobil uygulama. Kelime oyunu mekaniği etrafında inşa edilmiş; temiz UI, akıcı animasyonlar ve platform-native hisse önem verildi.</span>
-          <span data-lang="en">Mobile application built with TypeScript and React Native around a word game mechanic — prioritizing clean UI, fluid animations and a platform-native feel.</span>
+          <span data-lang="tr">TypeScript ve React Native ile geliştirilen mobil uygulama. Kelime oyunu mekaniği etrafında inşa edilmiş temiz UI.</span>
+          <span data-lang="en">Mobile application built with TypeScript and React Native around a word game mechanic with clean UI.</span>
         </p>
-        <a href="#" class="card-link">
-          <span data-lang="tr">Projeye Bak</span>
-          <span data-lang="en">View Project</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <a href="https://github.com/2xytalha/101-YazBoz-Board" target="_blank" rel="noopener" class="card-link">
+          <span data-lang="tr">Projeye Bak</span><span data-lang="en">View Project</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
 
-      <!-- FSBO Scraper -->
       <div class="project-card glass glass-hover reveal">
-        <div class="card-top">
-          <span class="card-num">04</span>
-          <span class="card-tag">Python</span>
-        </div>
+        <div class="card-top"><span class="card-num">04</span><span class="card-tag">Python</span></div>
         <h3 class="card-title">FSBO Scraper</h3>
         <p class="card-desc">
-          <span data-lang="tr">Sahibinden satılık ilanlarını otomatik olarak tarayan ve düzenleyen Python tabanlı veri kazıyıcı. Selenium ve BeautifulSoup ile güçlendirilmiş; yapılandırılmış veri çıktısı üretir.</span>
-          <span data-lang="en">Python-based data scraper that automatically crawls and organizes for-sale-by-owner listings. Powered by Selenium and BeautifulSoup, producing structured data output.</span>
+          <span data-lang="tr">Sahibinden satılık ilanlarını otomatik olarak tarayan ve düzenleyen Python tabanlı veri kazıyıcı. Selenium destekli.</span>
+          <span data-lang="en">Python-based data scraper that automatically crawls and organizes for-sale-by-owner listings powered by Selenium.</span>
         </p>
-        <a href="#" class="card-link">
-          <span data-lang="tr">Projeye Bak</span>
-          <span data-lang="en">View Project</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <a href="https://github.com/2xytalha/fsbo-scraper" target="_blank" rel="noopener" class="card-link">
+          <span data-lang="tr">Projeye Bak</span><span data-lang="en">View Project</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
 
-      <!-- Portfolio Site -->
-      <div class="project-card glass glass-hover reveal">
-        <div class="card-top">
-          <span class="card-num">05</span>
-          <span class="card-tag">Web</span>
-        </div>
-        <h3 class="card-title">
-          <span data-lang="tr">Bu Portfolyo</span>
-          <span data-lang="en">This Portfolio</span>
-        </h3>
-        <p class="card-desc">
-          <span data-lang="tr">Sıfırdan vanilla HTML/CSS/JS ile yapıldı. TR/EN i18n sistemi, kaydırma animasyonları, Liquid Glass UI dili ve dönen canlı durum mesajları içeriyor.</span>
-          <span data-lang="en">Built from scratch with vanilla HTML/CSS/JS. Features TR/EN i18n system, scroll animations, Liquid Glass UI language and rotating live status messages.</span>
-        </p>
-        <a href="#" class="card-link">
-          <span data-lang="tr">Kaynak Kodu</span>
-          <span data-lang="en">Source Code</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
 
     </div>
   </div>
@@ -1032,13 +794,9 @@
 
 <div class="divider"></div>
 
-<!-- ═══ PHILOSOPHY ═══ -->
 <section id="philosophy">
   <div class="container">
-    <p class="section-eyebrow">
-      <span data-lang="tr">Felsefe</span>
-      <span data-lang="en">Philosophy</span>
-    </p>
+    <p class="section-eyebrow"><span data-lang="tr">Felsefe</span><span data-lang="en">Philosophy</span></p>
     <h2 class="section-heading">
       <span data-lang="tr">Kod yazmak bir zanaattır.</span>
       <span data-lang="en">Writing code is a craft.</span>
@@ -1048,13 +806,10 @@
       <div class="philosophy-item reveal">
         <div class="philosophy-num">01</div>
         <div class="philosophy-quote">
-          <span data-lang="tr">Basitlik, karmaşıklığı yenmenin üstün biçimidir.</span>
-          <span data-lang="en">Simplicity is the ultimate sophistication.</span>
-          <span data-lang="tr">İşe yarayan, en az satırla, en çok iş yapan koddur.</span>
-          <span data-lang="en">The best code does the most with the least.</span>
+          <span data-lang="tr">Basitlik, karmaşıklığı yenmenin üstün biçimidir. İşe yarayan, en az satırla, en çok iş yapan koddur.</span>
+          <span data-lang="en">Simplicity is the ultimate sophistication. The best code does the most with the least.</span>
         </div>
       </div>
-
       <div class="philosophy-item reveal">
         <div class="philosophy-num">02</div>
         <div class="philosophy-quote">
@@ -1063,21 +818,11 @@
           <span>— Charles Eames</span>
         </div>
       </div>
-
       <div class="philosophy-item reveal">
         <div class="philosophy-num">03</div>
         <div class="philosophy-quote">
           <span data-lang="tr">Her bug, anlamamanın sembolüdür. Hataları sev; onlar en iyi öğretmendir.</span>
           <span data-lang="en">Every bug is a symbol of misunderstanding. Love errors — they are the best teachers.</span>
-        </div>
-      </div>
-
-      <div class="philosophy-item reveal">
-        <div class="philosophy-num">04</div>
-        <div class="philosophy-quote">
-          <span data-lang="tr">Göndermeyen mükemmellik, gönderilen iyilikten daima yenik düşer.</span>
-          <span data-lang="en">Shipped good always beats perfect that never shipped.</span>
-          <span>— Reid Hoffman</span>
         </div>
       </div>
     </div>
@@ -1086,14 +831,10 @@
 
 <div class="divider"></div>
 
-<!-- ═══ CONTACT ═══ -->
 <section id="contact">
   <div class="container-narrow">
     <div class="contact-inner glass">
-      <p class="section-eyebrow" style="margin-bottom:1.5rem">
-        <span data-lang="tr">İletişim</span>
-        <span data-lang="en">Contact</span>
-      </p>
+      <p class="section-eyebrow" style="margin-bottom:1.5rem"><span data-lang="tr">İletişim</span><span data-lang="en">Contact</span></p>
       <h2 class="contact-heading">
         <span data-lang="tr">Bir fikrin mi var?<br>Konuşalım.</span>
         <span data-lang="en">Got an idea?<br>Let's talk.</span>
@@ -1105,13 +846,12 @@
 
       <div class="contact-actions">
         <a href="mailto:talhaates555@gmail.com" class="btn btn-primary">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-          <span data-lang="tr">E-posta Gönder</span>
-          <span data-lang="en">Send Email</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+          <span data-lang="tr">E-posta Gönder</span><span data-lang="en">Send Email</span>
         </a>
-        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-ghost">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          GitHub
+        <a href="https://solo.to/talhates" target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><circle cx="18" cy="6" r="2.5" fill="currentColor" stroke="none"/><circle cx="6" cy="6" r="2.5" fill="currentColor" stroke="none"/></svg>
+          <span data-lang="tr">Sosyal Medya</span><span data-lang="en">Social Links</span>
         </a>
       </div>
 
@@ -1120,12 +860,11 @@
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-inner">
     <span class="footer-copy">
-      <span data-lang="tr">© 2025 Talha Ateş. Tüm hakları saklıdır.</span>
-      <span data-lang="en">© 2025 Talha Ateş. All rights reserved.</span>
+      <span data-lang="tr">© 2026 Talha Ateş. Tüm hakları saklıdır.</span>
+      <span data-lang="en">© 2026 Talha Ateş. All rights reserved.</span>
     </span>
     <div class="footer-links">
       <a href="https://github.com" target="_blank" rel="noopener" class="footer-link">GitHub</a>
@@ -1134,71 +873,67 @@
   </div>
 </footer>
 
-<!-- ═══ JAVASCRIPT ═══ -->
 <script>
-  /* ── Lang toggle ── */
-  const LANG_KEY = 'portfolio-lang';
-  let lang = localStorage.getItem(LANG_KEY) || 'tr';
-
-  function applyLang(l) {
-    lang = l;
-    localStorage.setItem(LANG_KEY, l);
-    document.querySelectorAll('[data-lang]').forEach(el => {
-      el.style.display = el.dataset.lang === l ? '' : 'none';
-    });
-    document.getElementById('langToggle').textContent = l === 'tr' ? 'EN' : 'TR';
-    document.documentElement.lang = l;
+  /* ── Language Toggle ── */
+  const langToggle = document.getElementById('langToggle');
+  let currentLang = localStorage.getItem('portfolio-lang') || 'en';
+  
+  function applyLang(lang) {
+    document.body.setAttribute('data-lang', lang);
+    langToggle.textContent = lang === 'en' ? 'TR' : 'EN';
+    localStorage.setItem('portfolio-lang', lang);
   }
-  applyLang(lang);
+  applyLang(currentLang);
 
-  document.getElementById('langToggle').addEventListener('click', () => {
-    applyLang(lang === 'tr' ? 'en' : 'tr');
+  langToggle.addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'tr' : 'en';
+    applyLang(currentLang);
   });
 
-  /* ── Navbar scroll ── */
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
+  /* ── Theme Toggle ── */
+  const themeToggle = document.getElementById('themeToggle');
+  let currentTheme = localStorage.getItem('portfolio-theme') || 'dark';
 
-  /* ── Burger / mobile menu ── */
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('portfolio-theme', theme);
+  }
+  applyTheme(currentTheme);
+
+  themeToggle.addEventListener('click', () => {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(currentTheme);
+  });
+
+  /* ── Mobile Menu ── */
   const burger = document.getElementById('burger');
   const navMobile = document.getElementById('navMobile');
+  
   burger.addEventListener('click', () => {
-    const open = navMobile.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open);
+    const isOpen = navMobile.classList.toggle('open');
     const spans = burger.querySelectorAll('span');
-    if (open) {
-      spans[0].style.cssText = 'transform:translateY(5.5px) rotate(45deg)';
-      spans[1].style.cssText = 'opacity:0';
-      spans[2].style.cssText = 'transform:translateY(-5.5px) rotate(-45deg)';
+    if (isOpen) {
+      spans[0].style.transform = 'translateY(5.5px) rotate(45deg)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'translateY(-5.5px) rotate(-45deg)';
     } else {
-      spans.forEach(s => s.style.cssText = '');
+      spans.forEach(s => s.style = '');
     }
   });
+
   navMobile.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       navMobile.classList.remove('open');
-      burger.setAttribute('aria-expanded', false);
-      burger.querySelectorAll('span').forEach(s => s.style.cssText = '');
+      burger.querySelectorAll('span').forEach(s => s.style = '');
     });
   });
 
-  /* ── Active nav link on scroll ── */
-  const sections = document.querySelectorAll('section[id], .hero');
-  const navLinks = document.querySelectorAll('.nav-link[data-section]');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const link = document.querySelector(`.nav-link[data-section="${e.target.id}"]`);
-        if (link) link.classList.add('active');
-      }
-    });
-  }, { threshold: 0.4 });
-  sections.forEach(s => io.observe(s));
+  /* ── Navbar Scroll ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
 
-  /* ── Scroll reveal ── */
+  /* ── Scroll Reveal ── */
   const revealIO = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1207,38 +942,30 @@
       }
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  
   document.querySelectorAll('.reveal').forEach(el => revealIO.observe(el));
 
-  /* ── Live status rotation ── */
+  /* ── Live Status ── */
   const statusMessages = {
-    tr: [
-      'Aktif geliştiriyorum',
-      'Yeni proje planlıyorum',
-      'Bug avındayım 🐛',
-      'Öğrenme modunda',
-      'Pull request açık',
-    ],
-    en: [
-      'Actively building',
-      'Planning next project',
-      'On a bug hunt 🐛',
-      'In learning mode',
-      'Pull request open',
-    ]
+    tr: ['Aktif geliştiriyorum', 'Yeni proje planlıyorum', 'Bug avındayım ', 'Öğrenme modunda'],
+    en: ['Actively building', 'Planning next project', 'On a bug hunt ', 'In learning mode']
   };
   let statusIdx = 0;
   const statusEl = document.getElementById('liveStatus');
-  setInterval(() => {
-    statusEl.style.opacity = '0';
-    setTimeout(() => {
-      statusIdx = (statusIdx + 1) % statusMessages.tr.length;
-      statusEl.querySelectorAll('[data-lang]').forEach(el => {
-        el.textContent = statusMessages[el.dataset.lang][statusIdx];
-      });
-      statusEl.style.opacity = '1';
-    }, 350);
-  }, 3200);
-  statusEl.style.transition = 'opacity .35s ease';
+  
+  if (statusEl) {
+    setInterval(() => {
+      statusEl.style.opacity = '0';
+      setTimeout(() => {
+        statusIdx = (statusIdx + 1) % statusMessages.tr.length;
+        statusEl.querySelectorAll('[data-lang]').forEach(el => {
+          el.textContent = statusMessages[el.dataset.lang][statusIdx];
+        });
+        statusEl.style.opacity = '1';
+      }, 350);
+    }, 3200);
+    statusEl.style.transition = 'opacity .35s ease';
+  }
 </script>
 </body>
 </html>
